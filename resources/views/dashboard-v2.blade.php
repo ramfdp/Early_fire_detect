@@ -114,11 +114,11 @@
         // Define building locations with precise coordinates (fixed)
 
         const buildingLocations = {
-            'Wisma Krakatau': [-6.011246, 106.055856], // Jl. KH. Yasin Beji No.6, Kebondalem
-            'CM-1': [-6.010794, 106.052944],           // Jl. Jenderal Sudirman No.10, Kebondalem
-            'CM-2': [-6.027392, 106.000642],           // XXFF+7VP, Tegalratu, Ciwandan
-            'CM-3': [-6.009936, 106.038151],           // X2WG+9GQ, Ramanuju, Gerogol
-            'Antartika': [-6.006973, 106.050991]       // 2259+W2H, Rw. Arum, Purwakarta
+            'Wisma Krakatau': [-6.014580, 106.063235], // Jl. KH. Yasin Beji No.6, Kebondalem
+            'CM-1': [-6.016420, 106.058432],           // Jl. Jenderal Sudirman No.10, Kebondalem
+            'CM-2': [-6.018923, 106.016231],           // XXFF+7VP, Tegalratu, Ciwandan
+            'CM-3': [-5.998242, 106.030167],           // X2WG+9GQ, Ramanuju, Gerogol
+            'Antartika': [-6.011235, 106.057421]       // 2259+W2H, Rw. Arum, Purwakarta
         };
 
         // Map initialization
@@ -268,8 +268,8 @@
                     $.gritter.add({
                         title: 'PERINGATAN KEBAKARAN!',
                         text: 'Suhu di {{ $building }} mencapai {{ $data->temperature_value }}°C! Segera lakukan evakuasi!',
-                        sticky: true,
-                        time: '',
+                        sticky: false,
+                        time: '3000',
                         class_name: 'my-sticky-class gritter-danger'
                     });
                 @elseif($data->status == 'siaga')
@@ -277,7 +277,7 @@
                         title: 'Peringatan Siaga!',
                         text: 'Suhu di {{ $building }} mencapai {{ $data->temperature_value }}°C! Perhatikan kondisi sekitar!',
                         sticky: false,
-                        time: '5000',
+                        time: '3000',
                         class_name: 'gritter-warning'
                     });
                 @endif
@@ -340,7 +340,7 @@
                         title: 'Peringatan Siaga!',
                         text: `Suhu di ${buildingTitle} mencapai ${temperature}°C! Perhatikan kondisi sekitar!`,
                         sticky: false,
-                        time: '5000',
+                        time: '3000',
                         class_name: 'gritter-warning'
                     });
                 } else if (status === 'kebakaran') {
@@ -348,8 +348,8 @@
                     $.gritter.add({
                         title: 'PERINGATAN KEBAKARAN!',
                         text: `Suhu di ${buildingTitle} mencapai ${temperature}°C! Segera lakukan evakuasi!`,
-                        sticky: true,
-                        time: '',
+                        sticky: false,
+                        time: '3000',
                         class_name: 'my-sticky-class gritter-danger'
                     });
                 }
