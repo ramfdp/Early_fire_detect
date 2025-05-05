@@ -16,7 +16,10 @@
 			<span class="icon-bar"></span>
 		</button>
 		@endif
-		<a href="/" class="navbar-brand"><span class="navbar-logo"></span> <b>Color</b> Admin</a>
+		<a href="/" class="navbar-brand d-flex align-items-center">
+			<img src="{{ asset('assets/img/logoKsp.png') }}" alt="KSP Logo" class="logo-ksp me-2" style="height: 35px;">
+			<b>Fire</b> Detection
+		</a>		
 		@if ($appHeaderMegaMenu && !$appSidebarTwo)
 		<button type="button" class="navbar-mobile-toggler" data-bs-toggle="collapse" data-bs-target="#top-navbar">
 			<span class="fa-stack fa-lg">

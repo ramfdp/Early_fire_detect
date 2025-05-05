@@ -35,7 +35,8 @@
 			
 			<!-- BEGIN login-content -->
 			<div class="login-content">
-				<form action="/" method="GET">
+				<form method="POST" action="{{ route('login') }}">
+					@csrf				
 					<div class="form-floating mb-20px">
 						<input type="text" class="form-control fs-13px h-45px border-0" placeholder="Email Address" id="emailAddress" />
 						<label for="emailAddress" class="d-flex align-items-center text-gray-600 fs-13px">Email Address</label>
