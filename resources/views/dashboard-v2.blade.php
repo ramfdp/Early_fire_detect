@@ -99,6 +99,33 @@
             border-radius: 50%;
             margin-right: 10px;
         }
+        .custom-map-marker {
+            background: transparent;
+            border: none;
+        }
+
+        .marker-pin {
+            transition: background-color 0.3s ease;
+            transform-origin: center;
+        }
+        .status-kebakaran .marker-pin {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 @endpush
 
@@ -114,11 +141,11 @@
         // Define building locations with precise coordinates (fixed)
 
         const buildingLocations = {
-            'Wisma Krakatau': [-6.014580, 106.063235], // Jl. KH. Yasin Beji No.6, Kebondalem
-            'CM-1': [-6.016420, 106.058432],           // Jl. Jenderal Sudirman No.10, Kebondalem
-            'CM-2': [-6.018923, 106.016231],           // XXFF+7VP, Tegalratu, Ciwandan
+            'Wisma Krakatau': [-6.001660, 106.043480], // Jl. KH. Yasin Beji No.6, Kebondalem
+            'CM-1': [-6.006261, 106.038939],           // Jl. Jenderal Sudirman No.10, Kebondalem
+            'CM-2': [-6.005918, 105.992274],           // XXFF+7VP, Tegalratu, Ciwandan
             'CM-3': [-5.998242, 106.030167],           // X2WG+9GQ, Ramanuju, Gerogol
-            'Antartika': [-6.011235, 106.057421]       // 2259+W2H, Rw. Arum, Purwakarta
+            'Antartika': [-5.989688, 106.019075]       // 2259+W2H, Rw. Arum, Purwakarta
         };
 
         // Map initialization
@@ -184,18 +211,18 @@
 
         // Create custom marker icon based on status
         function createMarkerIcon(status) {
-            let iconClass = 'fire-marker-normal';
+            let color = '#32a932'; // Normal (green)
             if (status === 'siaga') {
-                iconClass = 'fire-marker-siaga';
+                color = '#f59c1a'; // Siaga (orange)
             } else if (status === 'kebakaran') {
-                iconClass = 'fire-marker-kebakaran';
+                color = '#ff3e3e'; // Kebakaran (red)
             }
             
             return L.divIcon({
-                className: iconClass,
-                html: `<div style="width: 20px; height: 20px;"></div>`,
-                iconSize: [20, 20],
-                iconAnchor: [10, 10]
+                className: 'custom-map-marker',
+                html: `<div class="marker-pin" style="background-color: ${color}; width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 5px rgba(0,0,0,0.3);"></div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
             });
         }
 
@@ -242,11 +269,20 @@
                         const newIcon = createMarkerIcon(status);
                         buildingMarkers[building].setIcon(newIcon);
                         
+                        // Update marker class for special effects
+                        const markerElement = buildingMarkers[building].getElement();
+                        if (markerElement) {
+                            // Remove all status classes
+                            markerElement.classList.remove('status-normal', 'status-siaga', 'status-kebakaran');
+                            // Add the current status class
+                            markerElement.classList.add(`status-${status}`);
+                        }
+                        
                         // Update popup content
                         buildingMarkers[building].getPopup().setContent(`
                             <b>${building}</b><br>
-                            Status: ${status.toUpperCase()}<br>
-                            Temperature: ${temp}
+                            <b>Status:</b> <span style="color: ${status === 'normal' ? '#32a932' : status === 'siaga' ? '#f59c1a' : '#ff3e3e'}">${status.toUpperCase()}</span><br>
+                            <b>Temperature:</b> ${temp}
                         `);
                         
                         // Only open popup if kebakaran status and not already open

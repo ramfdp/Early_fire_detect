@@ -12,10 +12,18 @@ return [
     | the usual Laravel view path has already been registered for you.
     |
     */
-  'menu' => [[
-		'icon' => 'fa fa-sitemap',
-		'title' => 'Dashboard',
-		'url' => '/dashboard/v2',
-		'route-name' => 'dashboard-v2'
-	]]
+  'menu' => [
+    [
+      'icon' => 'fa fa-sitemap',
+      'title' => 'Dashboard',
+      'url' => '/dashboard/v2',
+      'route-name' => 'dashboard-v2'
+    ],
+    [
+      'icon' => 'fa fa-table',
+      'title' => 'History',
+      'url' => '/History',
+      'route-name' => 'History'
+    ]
+  ]
 ];
