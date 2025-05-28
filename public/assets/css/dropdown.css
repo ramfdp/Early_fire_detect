@@ -1,0 +1,126 @@
+
+body {
+    font-family: 'Nunito', sans-serif;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0;
+}
+
+.container {
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+h3 {
+    color: #444;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    flex: 1;
+    min-width: 200px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #4a76a8;
+    box-shadow: 0 0 5px rgba(74, 118, 168, 0.2);
+}
+
+.btn-cari {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-cari:hover {
+    background-color: #45a049;
+}
+
+.hasil {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border-radius: 4px;
+    color: #0d47a1;
+    font-weight: 500;
+    border-left: 4px solid #2196f3;
+}
+
+.tabel-container {
+    margin-top: 25px;
+    overflow-x: auto;
+}
+
+.tabel-presensi {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.tabel-presensi th,
+.tabel-presensi td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tabel-presensi th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+.tabel-presensi thead tr:nth-child(1) th {
+    background-color: #ffeb3b;
+}
+
+.tabel-presensi tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}

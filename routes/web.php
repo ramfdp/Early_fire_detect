@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TemperatureController;
+use App\Http\Controllers\DropdownController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +18,12 @@ use App\Http\Controllers\TemperatureController;
 Route::get('/', [TemperatureController::class, 'dashboard'])->name('dashboard');
 Route::get('/generate-random-data', [TemperatureController::class, 'generateRandomData'])->name('generate.random.data');
 Route::post('/update-temperature', [TemperatureController::class, 'updateTemperature'])->name('update.temperature');
+Route::get('/dropdown', [DropdownController::class, 'index'])->name('history');
 
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard-v2', function () {
+    return view('dashboard-v2');
+})->middleware(['auth', 'verified'])->name('dashboard-v2');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
