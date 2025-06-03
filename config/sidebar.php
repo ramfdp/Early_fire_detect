@@ -18,6 +18,12 @@ return [
       'title' => 'Dashboard',
       'url' => '/dashboard/v2',
       'route-name' => 'dashboard-v2'
+    ],
+    [
+      'icon' => 'fa fa-table',
+      'title' => 'History',
+      'url' => '/history',
+      'route-name' => 'history'
     ]
   ]
 ];

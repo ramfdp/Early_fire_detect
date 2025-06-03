@@ -1,0 +1,155 @@
+.building-card {
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.status-normal {
+    background-color: #32a932;
+    color: white;
+}
+
+.status-siaga {
+    background-color: #f59c1a;
+    color: white;
+}
+
+.status-kebakaran {
+    background-color: #ff3e3e;
+    color: white;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.temperature-display {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.status-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-tabs .nav-link {
+    font-weight: 600;
+}
+
+.user-table th,
+.user-table td {
+    vertical-align: middle;
+}
+
+#fire-map {
+    height: 500px;
+    /* Increased height */
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    z-index: 1;
+    /* Ensure map is above other elements */
+}
+
+.leaflet-control-zoom {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.fire-marker-normal,
+.fire-marker-siaga,
+.fire-marker-kebakaran {
+    width: 20px !important;
+    height: 20px !important;
+    margin-left: -10px !important;
+    margin-top: -10px !important;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.fire-marker-kebakaran {
+    animation: map-blink 1s infinite;
+}
+
+@keyframes map-blink {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.map-legend {
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.map-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.map-legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.custom-map-marker {
+    background: transparent;
+    border: none;
+}
+
+.marker-pin {
+    transition: background-color 0.3s ease;
+    transform-origin: center;
+}
+
+.status-kebakaran .marker-pin {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
