@@ -19,7 +19,7 @@ class TemperatureSeeder extends Seeder
         foreach ($buildings as $building) {
             // Generate some historical data
             for ($i = 0; $i < 24; $i++) {
-                $temperatureValue = rand(30, 45); // Most in normal to siaga range
+                $temperatureValue = rand(30, 45); 
                 $status = Temperature::getStatus($temperatureValue);
                 
                 Temperature::create([
@@ -31,8 +31,7 @@ class TemperatureSeeder extends Seeder
                     'updated_at' => now()->subHours(24 - $i)
                 ]);
             }
-            
-            // Generate current data
+
             $temperatureValue = rand(30, 45);
             $status = Temperature::getStatus($temperatureValue);
             

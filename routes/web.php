@@ -19,6 +19,7 @@ Route::get('/', [TemperatureController::class, 'dashboard'])->name('dashboard');
 Route::get('/generate-random-data', [TemperatureController::class, 'generateRandomData'])->name('generate.random.data');
 Route::post('/update-temperature', [TemperatureController::class, 'updateTemperature'])->name('update.temperature');
 Route::get('/dropdown', [DropdownController::class, 'index'])->name('history');
+Route::get('/history', [TemperatureController::class, 'history'])->name('history');
 
 
 Route::get('/dashboard-v2', function () {

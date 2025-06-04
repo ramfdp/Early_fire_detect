@@ -36,7 +36,7 @@
         "@fullcalendar/timegrid": "^6.1.9",
         "@highlightjs/cdn-assets": "^11.9.0",
         "abpetkov-powerange": "github:npmcomponent/abpetkov-powerange",
-        "angular": "^1.6.10",
+        "angular": "1.5.0",
         "angular-ui-bootstrap": "^2.5.6",
         "angular-ui-router": "^0.2.17",
         "animate.css": "^4.1.1",

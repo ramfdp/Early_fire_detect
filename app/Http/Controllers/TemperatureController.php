@@ -18,15 +18,15 @@ class TemperatureController extends Controller
     public function dashboard()
     {
         $buildings = ['Wisma Krakatau', 'CM-1', 'CM-2', 'CM-3', 'Antartika'];
-        
+
         $buildingData = [];
-        
+
         foreach ($buildings as $building) {
             // Get the latest temperature for each building
             $latestTemperature = Temperature::where('building_name', $building)
                 ->orderBy('created_at', 'desc')
                 ->first();
-            
+
             // If no data exists yet, create sample data
             if (!$latestTemperature) {
                 $tempValue = rand(25, 40); // Random normal temperature
@@ -38,10 +38,10 @@ class TemperatureController extends Controller
                 ]);
                 $latestTemperature->save();
             }
-            
+
             $buildingData[$building] = $latestTemperature;
         }
-        
+
         // Get temperature trend for the last 24 hours
         $temperatureTrends = DB::table('temperatures')
             ->select(DB::raw('building_name, AVG(temperature_value) as avg_temp, HOUR(created_at) as hour'))
@@ -50,13 +50,13 @@ class TemperatureController extends Controller
             ->orderBy('hour')
             ->get()
             ->groupBy('building_name');
-        
-            return view('dashboard-v2', [
-                'buildingData' => $buildingData,
-                'temperatureTrends' => $temperatureTrends
-            ]);            
+
+        return view('dashboard-v2', [
+            'buildingData' => $buildingData,
+            'temperatureTrends' => $temperatureTrends
+        ]);
     }
-    
+
     /**
      * Update temperature data for a building
      *
@@ -69,21 +69,21 @@ class TemperatureController extends Controller
             'building_name' => 'required|string',
             'temperature_value' => 'required|numeric',
         ]);
-        
+
         $building = $request->input('building_name');
         $temperatureValue = $request->input('temperature_value');
         $status = Temperature::getStatus($temperatureValue);
-        
+
         Temperature::create([
             'building_name' => $building,
             'temperature_value' => $temperatureValue,
             'status' => $status,
             'timestamp' => now(),
         ]);
-        
+
         return redirect()->route('dashboard')->with('message', 'Temperature updated successfully');
     }
-    
+
     /**
      * API to get the latest temperature data for all buildings
      *
@@ -92,14 +92,14 @@ class TemperatureController extends Controller
     public function getLatestTemperatures()
     {
         $buildings = ['Wisma Krakatau', 'CM-1', 'CM-2', 'CM-3', 'Antartika'];
-        
+
         $data = [];
-        
+
         foreach ($buildings as $building) {
             $latestTemperature = Temperature::where('building_name', $building)
                 ->orderBy('created_at', 'desc')
                 ->first();
-            
+
             if ($latestTemperature) {
                 $data[$building] = [
                     'temperature' => $latestTemperature->temperature_value,
@@ -108,10 +108,10 @@ class TemperatureController extends Controller
                 ];
             }
         }
-        
+
         return response()->json($data);
     }
-    
+
     /**
      * Generate random temperature data for testing
      *
@@ -120,11 +120,11 @@ class TemperatureController extends Controller
     public function generateRandomData()
     {
         $buildings = ['Wisma Krakatau', 'CM-1', 'CM-2', 'CM-3', 'Antartika'];
-        
+
         foreach ($buildings as $building) {
-            $temperatureValue = rand(30, 60); // Random temperature between 30-60
+            $temperatureValue = rand(30, 60);
             $status = Temperature::getStatus($temperatureValue);
-            
+
             Temperature::create([
                 'building_name' => $building,
                 'temperature_value' => $temperatureValue,
@@ -133,5 +133,16 @@ class TemperatureController extends Controller
             ]);
         }
         return redirect()->route('dashboard')->with('message', 'Random data generated successfully');
+    }
+
+    /**
+     * Display historical temperature data
+     *
+     * @return \Illuminate\View\View
+     */
+    public function history()
+    {
+        $histories = Temperature::orderBy('timestamp', 'desc')->paginate(20); // Bisa diganti `get()` kalau tidak pakai pagination
+        return view('history', compact('histories'));
     }
 }

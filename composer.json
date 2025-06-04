@@ -52,6 +52,12 @@
             "@php artisan key:generate --ansi"
         ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel/vite-plugin"
+        }
+    ],
     "extra": {
         "laravel": {
             "dont-discover": []
@@ -66,6 +72,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }
